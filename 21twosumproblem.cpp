@@ -21,14 +21,11 @@
 //         for(j=0;j<n;j++)
 //           or this ..below one is more optimized
 //         for(j=i+1;j<n;j++){
-//             if(i==j){
-//                 continue;
-//             }
-//             else{
+
+
 //                 if(arr[i]+arr[j]==target){
 //                     cout<<i<<endl<<j;
 
-//                 }
 //             }
 
 //         }
