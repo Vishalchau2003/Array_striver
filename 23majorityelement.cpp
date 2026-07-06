@@ -109,5 +109,5 @@ int main()
     cout<<element<<endl;
  }
     return 0;
-    
+    //time complexity is O(n) and space complexity is O(1)
 }
