@@ -124,85 +124,86 @@
 
 
 
-Approach 1: Without mpp[0] = 1 (Need Special Case)
-class Solution {
-public:
-    int subarraySum(vector<int>& nums, int k) {
+// Approach 1: Without mpp[0] = 1 (Need Special Case) ///leetcode
 
-        int n = nums.size();
+// class Solution {
+// public:
+//     int subarraySum(vector<int>& nums, int k) {
 
-        // Stores: prefixSum -> frequency
-        map<int, int> mpp;
+//         int n = nums.size();
 
-        int sum = 0;
-        int cnt = 0;
+//         // Stores: prefixSum -> frequency
+//         map<int, int> mpp;
 
-        for (int i = 0; i < n; i++) {
+//         int sum = 0;
+//         int cnt = 0;
 
-            // Current Prefix Sum
-            sum += nums[i];
+//         for (int i = 0; i < n; i++) {
 
-            // ------------------------------
-            // Special Case:
-            // If the prefix sum itself equals k,
-            // then subarray [0...i] has sum = k.
-            // ------------------------------
-            if (sum == k)
-                cnt++;
+//             // Current Prefix Sum
+//             sum += nums[i];
 
-            // We need a previous prefix sum = (sum - k)
-            // so that:
-            // currentPrefix - previousPrefix = k
-            int rem = sum - k;
+//             // ------------------------------
+//             // Special Case:
+//             // If the prefix sum itself equals k,
+//             // then subarray [0...i] has sum = k.
+//             // ------------------------------
+//             if (sum == k)
+//                 cnt++;
 
-            // If such a prefix exists,
-            // all its occurrences form valid subarrays.
-            if (mpp.find(rem) != mpp.end()) {
-                cnt += mpp[rem];
-            }
+//             // We need a previous prefix sum = (sum - k)
+//             // so that:
+//             // currentPrefix - previousPrefix = k
+//             int rem = sum - k;
 
-            // Store current prefix sum
-            mpp[sum]++;
-        }
+//             // If such a prefix exists,
+//             // all its occurrences form valid subarrays.
+//             if (mpp.find(rem) != mpp.end()) {
+//                 cnt += mpp[rem];
+//             }
 
-        return cnt;
-    }
-};
-Approach 2: Standard Prefix Sum Template (Recommended)
-class Solution {
-public:
-    int subarraySum(vector<int>& nums, int k) {
+//             // Store current prefix sum
+//             mpp[sum]++;
+//         }
 
-        int n = nums.size();
+//         return cnt;
+//     }
+// };
+// // Approach 2: Standard Prefix Sum Template (Recommended)
+// class Solution {
+// public:
+//     int subarraySum(vector<int>& nums, int k) {
 
-        // Stores: prefixSum -> frequency
-        map<int, int> mpp;
+//         int n = nums.size();
 
-        // Imaginary prefix sum before index 0.
-        // This helps count subarrays starting from index 0.
-        mpp[0] = 1;
+//         // Stores: prefixSum -> frequency
+//         map<int, int> mpp;
 
-        int sum = 0;
-        int cnt = 0;
+//         // Imaginary prefix sum before index 0.
+//         // This helps count subarrays starting from index 0.
+//         mpp[0] = 1;
 
-        for (int i = 0; i < n; i++) {
+//         int sum = 0;
+//         int cnt = 0;
 
-            // Current Prefix Sum
-            sum += nums[i];
+//         for (int i = 0; i < n; i++) {
 
-            // We need a previous prefix sum = (sum - k)
-            int rem = sum - k;
+//             // Current Prefix Sum
+//             sum += nums[i];
 
-            // If found, every occurrence gives
-            // one valid subarray.
-            if (mpp.find(rem) != mpp.end()) {
-                cnt += mpp[rem];
-            }
+//             // We need a previous prefix sum = (sum - k)
+//             int rem = sum - k;
 
-            // Store current prefix sum
-            mpp[sum]++;
-        }
+//             // If found, every occurrence gives
+//             // one valid subarray.
+//             if (mpp.find(rem) != mpp.end()) {
+//                 cnt += mpp[rem];
+//             }
 
-        return cnt;
-    }
-};
+//             // Store current prefix sum
+//             mpp[sum]++;
+//         }
+
+//         return cnt;
+//     }
+// };
